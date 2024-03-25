@@ -22,6 +22,10 @@ class GildedRose {
 
         updateSellIn(item, isSulfuras);
 
+        processExpiredItem(item, isAgedBrie, isBackstagePasses, isSulfuras);
+    }
+
+    private void processExpiredItem(Item item, boolean isAgedBrie, boolean isBackstagePasses, boolean isSulfuras) {
         if (item.sellIn < 0) {
             if (!isAgedBrie) {
                 if (!isBackstagePasses) {
