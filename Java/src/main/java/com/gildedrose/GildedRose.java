@@ -20,9 +20,7 @@ class GildedRose {
 
         updateQuality(item, isAgedBrie, isBackstagePasses, isSulfuras);
 
-        if (!isSulfuras) {
-            item.sellIn = item.sellIn - 1;
-        }
+        updateSellIn(item, isSulfuras);
 
         if (item.sellIn < 0) {
             if (!isAgedBrie) {
@@ -40,6 +38,12 @@ class GildedRose {
                     item.quality = item.quality + 1;
                 }
             }
+        }
+    }
+
+    private void updateSellIn(Item item, boolean isSulfuras) {
+        if (!isSulfuras) {
+            item.sellIn = item.sellIn - 1;
         }
     }
 
