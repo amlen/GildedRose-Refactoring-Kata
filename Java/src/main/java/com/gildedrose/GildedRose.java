@@ -19,10 +19,13 @@ class GildedRose {
         boolean isSulfuras = isSulfuras(item);
 
         updateQuality(item, isAgedBrie, isBackstagePasses, isSulfuras);
-
         updateSellIn(item, isSulfuras);
-        if (item.sellIn < 0)
+        if (isExpired(item))
             processExpiredItem(item, isAgedBrie, isBackstagePasses, isSulfuras);
+    }
+
+    private boolean isExpired(Item item) {
+        return item.sellIn < 0;
     }
 
     private boolean isAgedBrie(Item item) {
