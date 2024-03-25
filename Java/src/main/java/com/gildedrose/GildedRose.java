@@ -21,12 +21,11 @@ class GildedRose {
         updateQuality(item, isAgedBrie, isBackstagePasses, isSulfuras);
 
         updateSellIn(item, isSulfuras);
-
-        processExpiredItem(item, isAgedBrie, isBackstagePasses, isSulfuras);
+        if (item.sellIn < 0)
+            processExpiredItem(item, isAgedBrie, isBackstagePasses, isSulfuras);
     }
 
     private void processExpiredItem(Item item, boolean isAgedBrie, boolean isBackstagePasses, boolean isSulfuras) {
-        if (item.sellIn < 0) {
             if (!isAgedBrie) {
                 if (!isBackstagePasses) {
                     if (item.quality > 0) {
@@ -42,7 +41,6 @@ class GildedRose {
                     increaseQuality(item);
                 }
             }
-        }
     }
 
     private void decreaseQuality(Item item) {
