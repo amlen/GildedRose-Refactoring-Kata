@@ -69,13 +69,7 @@ class GildedRose {
     }
 
     private void updateQuality(Item item, boolean isAgedBrie, boolean isBackstagePasses, boolean isSulfuras) {
-        if (!isAgedBrie && !isBackstagePasses) {
-            if (item.quality > 0) {
-                if (!isSulfuras) {
-                    decreaseQuality(item);
-                }
-            }
-        } else {
+        if (isAgedBrie || isBackstagePasses) {
             if (item.quality < 50) {
                 increaseQuality(item);
 
@@ -92,6 +86,13 @@ class GildedRose {
                         }
                     }
                 }
+            }
+        } else {
+            if (item.quality > 0) {
+                if (isSulfuras) {
+                    return;
+                }
+                decreaseQuality(item);
             }
         }
     }
