@@ -15,7 +15,7 @@ class GildedRose {
 
     private void updateItem(Item item) {
         boolean isAgedBrie = item.name.equals("Aged Brie");
-        boolean isBackstagePasses = item.name.equals("Backstage passes to a TAFKAL80ETC concert");
+        boolean isBackstagePasses = isBackstagePasses(item);
         boolean isSulfuras = isSulfuras(item);
 
         updateQuality(item, isAgedBrie, isBackstagePasses, isSulfuras);
@@ -23,6 +23,10 @@ class GildedRose {
         updateSellIn(item, isSulfuras);
         if (item.sellIn < 0)
             processExpiredItem(item, isAgedBrie, isBackstagePasses, isSulfuras);
+    }
+
+    private boolean isBackstagePasses(Item item) {
+        return item.name.equals("Backstage passes to a TAFKAL80ETC concert");
     }
 
     private boolean isSulfuras(Item item) {
