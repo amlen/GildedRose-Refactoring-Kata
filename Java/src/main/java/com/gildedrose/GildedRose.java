@@ -3,6 +3,7 @@ package com.gildedrose;
 class GildedRose {
     public static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
     public static final String AGED = "Aged Brie";
+    public static final String BACKSTAGE = "Backstage passes to a TAFKAL80ETC concert";
     Item[] items;
 
     public GildedRose(Item[] items) {
@@ -39,7 +40,7 @@ class GildedRose {
                     increaseQuality(item);
                 }
                 break;
-            case "Backstage passes to a TAFKAL80ETC concert":
+            case BACKSTAGE:
                 item.quality = 0;
                 break;
             default:
@@ -67,7 +68,7 @@ class GildedRose {
                     increaseQuality(item);
                 }
                 break;
-            case "Backstage passes to a TAFKAL80ETC concert":
+            case BACKSTAGE:
                 if (item.sellIn < 11) {
                     if (item.quality < 50) {
                         increaseQuality(item);
