@@ -53,8 +53,7 @@ class GildedRose {
     }
 
     private void updateSellIn(Item item) {
-        boolean isSulfuras = isSulfuras(item);
-        if (!isSulfuras) {
+        if (!isSulfuras(item)) {
             item.sellIn = item.sellIn - 1;
         }
     }
