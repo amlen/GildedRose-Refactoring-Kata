@@ -41,7 +41,7 @@ class GildedRose {
                 break;
             case "Backstage passes to a TAFKAL80ETC concert":
                 item.quality = 0;
-                return;
+                break;
             default:
                 decreaseQuality(item);
         }
@@ -81,14 +81,12 @@ class GildedRose {
 
                 if (item.quality < 50) {
                     increaseQuality(item);
-                    return;
                 }
                 break;
             default:
                 if (item.quality > 0) {
                     decreaseQuality(item);
                 }
-                break;
         }
     }
 
