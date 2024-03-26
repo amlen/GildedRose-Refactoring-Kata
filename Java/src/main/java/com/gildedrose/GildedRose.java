@@ -14,14 +14,12 @@ class GildedRose {
     }
 
     private void updateItem(Item item) {
-        boolean isAgedBrie = isAgedBrie(item);
-        boolean isBackstagePasses = isBackstagePasses(item);
         boolean isSulfuras = isSulfuras(item);
 
         updateQuality(item);
         updateSellIn(item, isSulfuras);
         if (isExpired(item))
-            processExpiredItem(item, isAgedBrie, isBackstagePasses, isSulfuras);
+            processExpiredItem(item);
     }
 
     private boolean isExpired(Item item) {
@@ -40,25 +38,20 @@ class GildedRose {
         return item.name.equals("Sulfuras, Hand of Ragnaros");
     }
 
-    private void processExpiredItem(Item item, boolean isAgedBrie, boolean isBackstagePasses, boolean isSulfuras) {
-        if (isSulfuras) {
-            return;
-        }
-
-        if (isAgedBrie) {
-            if (item.quality < 50) {
-                increaseQuality(item);
-            }
-            return;
-        }
-
-        if (isBackstagePasses) {
-            item.quality = 0;
-            return;
-        }
-
-        if (item.quality > 0) {
-            decreaseQuality(item);
+    private void processExpiredItem(Item item) {
+        switch (item.name) {
+            case "Sulfuras, Hand of Ragnaros":
+               break;  // Quality never changes for Sulfuras
+            case "Aged Brie":
+                if (item.quality < 50) {
+                    increaseQuality(item);
+                }
+                break;
+            case "Backstage passes to a TAFKAL80ETC concert":
+                item.quality = 0;
+                return;
+            default:
+                decreaseQuality(item);
         }
     }
 
