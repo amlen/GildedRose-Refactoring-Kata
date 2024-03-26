@@ -26,14 +26,6 @@ class GildedRose {
         return item.sellIn < 0;
     }
 
-    private boolean isAgedBrie(Item item) {
-        return item.name.equals("Aged Brie");
-    }
-
-    private boolean isBackstagePasses(Item item) {
-        return item.name.equals("Backstage passes to a TAFKAL80ETC concert");
-    }
-
     private boolean isSulfuras(Item item) {
         return item.name.equals("Sulfuras, Hand of Ragnaros");
     }
@@ -41,7 +33,7 @@ class GildedRose {
     private void processExpiredItem(Item item) {
         switch (item.name) {
             case "Sulfuras, Hand of Ragnaros":
-               break;  // Quality never changes for Sulfuras
+                break;  // Quality never changes for Sulfuras
             case "Aged Brie":
                 if (item.quality < 50) {
                     increaseQuality(item);
