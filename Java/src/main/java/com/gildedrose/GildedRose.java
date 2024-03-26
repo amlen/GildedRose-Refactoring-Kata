@@ -4,6 +4,7 @@ class GildedRose {
     public static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
     public static final String AGED = "Aged Brie";
     public static final String BACKSTAGE = "Backstage passes to a TAFKAL80ETC concert";
+    public static final int MAX_QUALITY = 50;
     Item[] items;
 
     public GildedRose(Item[] items) {
@@ -82,7 +83,7 @@ class GildedRose {
     }
 
     private void updateItemQuality(Item item) {
-        if (item.quality < 50) {
+        if (item.quality < MAX_QUALITY) {
             increaseQuality(item);
         }
     }
