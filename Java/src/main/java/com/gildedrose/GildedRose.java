@@ -36,9 +36,7 @@ class GildedRose {
             case SULFURAS:
                 break;  // Quality never changes for Sulfuras
             case AGED:
-                if (item.quality < 50) {
-                    increaseQuality(item);
-                }
+                updateItemQuality(item);
                 break;
             case BACKSTAGE:
                 item.quality = 0;
@@ -63,31 +61,29 @@ class GildedRose {
             case SULFURAS:
                 break;
             case AGED:
-                if (item.quality < 50) {
-                    increaseQuality(item);
-                }
+                updateItemQuality(item);
                 break;
             case BACKSTAGE:
                 if (item.sellIn < 11) {
-                    if (item.quality < 50) {
-                        increaseQuality(item);
-                    }
+                    updateItemQuality(item);
                 }
 
                 if (item.sellIn < 6) {
-                    if (item.quality < 50) {
-                        increaseQuality(item);
-                    }
+                    updateItemQuality(item);
                 }
 
-                if (item.quality < 50) {
-                    increaseQuality(item);
-                }
+                updateItemQuality(item);
                 break;
             default:
                 if (item.quality > 0) {
                     decreaseQuality(item);
                 }
+        }
+    }
+
+    private void updateItemQuality(Item item) {
+        if (item.quality < 50) {
+            increaseQuality(item);
         }
     }
 
