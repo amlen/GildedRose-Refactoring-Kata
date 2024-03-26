@@ -2,6 +2,7 @@ package com.gildedrose;
 
 class GildedRose {
     public static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
+    public static final String AGED = "Aged Brie";
     Item[] items;
 
     public GildedRose(Item[] items) {
@@ -33,7 +34,7 @@ class GildedRose {
         switch (item.name) {
             case SULFURAS:
                 break;  // Quality never changes for Sulfuras
-            case "Aged Brie":
+            case AGED:
                 if (item.quality < 50) {
                     increaseQuality(item);
                 }
@@ -61,7 +62,7 @@ class GildedRose {
         switch (item.name) {
             case SULFURAS:
                 break;
-            case "Aged Brie":
+            case AGED:
                 if (item.quality < 50) {
                     increaseQuality(item);
                 }
