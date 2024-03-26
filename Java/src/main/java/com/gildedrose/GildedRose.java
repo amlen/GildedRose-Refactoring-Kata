@@ -14,10 +14,8 @@ class GildedRose {
     }
 
     private void updateItem(Item item) {
-        boolean isSulfuras = isSulfuras(item);
-
         updateQuality(item);
-        updateSellIn(item, isSulfuras);
+        updateSellIn(item);
         if (isExpired(item))
             processExpiredItem(item);
     }
@@ -51,7 +49,8 @@ class GildedRose {
         item.quality = item.quality - 1;
     }
 
-    private void updateSellIn(Item item, boolean isSulfuras) {
+    private void updateSellIn(Item item) {
+        boolean isSulfuras = isSulfuras(item);
         if (!isSulfuras) {
             item.sellIn = item.sellIn - 1;
         }
