@@ -1,6 +1,7 @@
 package com.gildedrose;
 
 class GildedRose {
+    public static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
     Item[] items;
 
     public GildedRose(Item[] items) {
@@ -25,12 +26,12 @@ class GildedRose {
     }
 
     private boolean isSulfuras(Item item) {
-        return item.name.equals("Sulfuras, Hand of Ragnaros");
+        return item.name.equals(SULFURAS);
     }
 
     private void processExpiredItem(Item item) {
         switch (item.name) {
-            case "Sulfuras, Hand of Ragnaros":
+            case SULFURAS:
                 break;  // Quality never changes for Sulfuras
             case "Aged Brie":
                 if (item.quality < 50) {
@@ -58,7 +59,7 @@ class GildedRose {
 
     private void updateQuality(Item item) {
         switch (item.name) {
-            case "Sulfuras, Hand of Ragnaros":
+            case SULFURAS:
                 break;
             case "Aged Brie":
                 if (item.quality < 50) {
