@@ -18,7 +18,7 @@ class GildedRose {
         boolean isBackstagePasses = isBackstagePasses(item);
         boolean isSulfuras = isSulfuras(item);
 
-        updateQuality(item, isAgedBrie, isBackstagePasses, isSulfuras);
+        updateQuality(item);
         updateSellIn(item, isSulfuras);
         if (isExpired(item))
             processExpiredItem(item, isAgedBrie, isBackstagePasses, isSulfuras);
@@ -68,40 +68,38 @@ class GildedRose {
         }
     }
 
-    private void updateQuality(Item item, boolean isAgedBrie, boolean isBackstagePasses, boolean isSulfuras) {
-        if (isSulfuras) {
-            return;
-        }
-
-        if (isAgedBrie) {
-            if (item.quality < 50) {
-                increaseQuality(item);
-            }
-            return;
-        }
-
-        if (isBackstagePasses) {
-            if (item.sellIn < 11) {
+    private void updateQuality(Item item) {
+        switch (item.name) {
+            case "Sulfuras, Hand of Ragnaros":
+                break;
+            case "Aged Brie":
                 if (item.quality < 50) {
                     increaseQuality(item);
                 }
-            }
+                break;
+            case "Backstage passes to a TAFKAL80ETC concert":
+                if (item.sellIn < 11) {
+                    if (item.quality < 50) {
+                        increaseQuality(item);
+                    }
+                }
 
-            if (item.sellIn < 6) {
+                if (item.sellIn < 6) {
+                    if (item.quality < 50) {
+                        increaseQuality(item);
+                    }
+                }
+
                 if (item.quality < 50) {
                     increaseQuality(item);
+                    return;
                 }
-            }
-
-            if (item.quality < 50) {
-                increaseQuality(item);
-                return;
-            }
-
-        }
-
-        if (item.quality > 0) {
-            decreaseQuality(item);
+                break;
+            default:
+                if (item.quality > 0) {
+                    decreaseQuality(item);
+                }
+                break;
         }
     }
 
