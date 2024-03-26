@@ -41,19 +41,20 @@ class GildedRose {
     }
 
     private void processExpiredItem(Item item, boolean isAgedBrie, boolean isBackstagePasses, boolean isSulfuras) {
-        if (!isAgedBrie) {
-            if (!isBackstagePasses) {
-                if (item.quality > 0) {
-                    if (!isSulfuras) {
-                        decreaseQuality(item);
-                    }
-                }
-            } else {
-                item.quality = 0;
-            }
-        } else {
+        if (isAgedBrie) {
             if (item.quality < 50) {
                 increaseQuality(item);
+            }
+        } else {
+            if (isBackstagePasses) {
+                item.quality = 0;
+            } else {
+                if (item.quality > 0) {
+                    if (isSulfuras) {
+                        return;
+                    }
+                    decreaseQuality(item);
+                }
             }
         }
     }
