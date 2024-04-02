@@ -4,6 +4,8 @@ class GildedRose {
     public static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
     public static final String AGED = "Aged Brie";
     public static final String BACKSTAGE = "Backstage passes to a TAFKAL80ETC concert";
+    public static final String CONJURED = "Conjured";
+
     Item[] items;
 
     public GildedRose(Item[] items) {
@@ -29,6 +31,8 @@ class GildedRose {
                 return new AgedBrieItem();
             case BACKSTAGE:
                 return new BackstagePassesItem();
+            case CONJURED:
+                return new ConjuredItem();
             default:
                 return new DefaultItem();
         }
