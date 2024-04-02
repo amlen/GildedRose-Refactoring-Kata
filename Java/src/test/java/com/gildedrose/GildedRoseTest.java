@@ -157,6 +157,17 @@ class GildedRoseTest {
         assertEquals(sellIn - 1, item.sellIn);
     }
 
+    @Test
+    public void updateQuality_ConjuredItem_QualityDegradeTwice() {
+        int sellIn = 3;
+        int quality = 6;
+        Item item = new Item("Conjured", sellIn, quality);
+        GildedRose app = new GildedRose(new Item[]{item});
+
+        app.updateInventory();
+        assertEquals(quality - 2, item.quality);
+    }
+
 }
 
 
