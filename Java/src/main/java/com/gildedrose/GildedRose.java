@@ -20,8 +20,6 @@ class GildedRose {
     private void updateItem(Item item) {
         updateSellIn(item);
         updateQuality(item);
-        if (isExpired(item))
-            processExpiredItem(item);
     }
 
     private boolean isExpired(Item item) {
@@ -80,6 +78,9 @@ class GildedRose {
                     decreaseQuality(item);
                 }
         }
+
+        if (isExpired(item))
+            processExpiredItem(item);
     }
 
     private void updateItemQuality(Item item) {
