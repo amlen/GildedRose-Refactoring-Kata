@@ -1,6 +1,7 @@
 package com.gildedrose;
 
 public class AgedBrieItem implements ItemUpdater{
+    public static final String NAME = "Aged Brie";
     @Override
     public void update(Item item) {
         item.sellIn--;

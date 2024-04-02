@@ -1,6 +1,7 @@
 package com.gildedrose;
 
 public class ConjuredItem implements ItemUpdater {
+    public static final String CONJURED = "Conjured";
     @Override
     public void update(Item item) {
         item.sellIn--;
