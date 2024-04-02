@@ -4,7 +4,6 @@ class GildedRose {
     public static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
     public static final String AGED = "Aged Brie";
     public static final String BACKSTAGE = "Backstage passes to a TAFKAL80ETC concert";
-    public static final int MAX_QUALITY = 50;
     Item[] items;
 
     public GildedRose(Item[] items) {
@@ -18,78 +17,21 @@ class GildedRose {
     }
 
     private void updateItem(Item item) {
-        updateSellIn(item);
-        updateQuality(item);
+        ItemUpdater updater = createItemUpdater(item);
+        updater.update(item);
     }
 
-    private boolean isExpired(Item item) {
-        return item.sellIn < 0;
-    }
-
-    private boolean isSulfuras(Item item) {
-        return item.name.equals(SULFURAS);
-    }
-
-    private void processExpiredItem(Item item) {
+    private ItemUpdater createItemUpdater(Item item) {
         switch (item.name) {
             case SULFURAS:
-                break;  // Quality never changes for Sulfuras
+                return new SulfurasItem();
             case AGED:
-                updateItemQuality(item);
-                break;
+                return new AgedBrieItem();
             case BACKSTAGE:
-                item.quality = 0;
-                break;
+                return new BackstagePassesItem();
             default:
-                decreaseQuality(item);
+                return new DefaultItem();
         }
     }
 
-    private void decreaseQuality(Item item) {
-        item.quality = item.quality - 1;
-    }
-
-    private void updateSellIn(Item item) {
-        if (!isSulfuras(item)) {
-            item.sellIn = item.sellIn - 1;
-        }
-    }
-
-    private void updateQuality(Item item) {
-        switch (item.name) {
-            case SULFURAS:
-                break;
-            case AGED:
-                updateItemQuality(item);
-                break;
-            case BACKSTAGE:
-                if (item.sellIn < 11) {
-                    updateItemQuality(item);
-                }
-
-                if (item.sellIn < 6) {
-                    updateItemQuality(item);
-                }
-
-                updateItemQuality(item);
-                break;
-            default:
-                if (item.quality > 0) {
-                    decreaseQuality(item);
-                }
-        }
-
-        if (isExpired(item))
-            processExpiredItem(item);
-    }
-
-    private void updateItemQuality(Item item) {
-        if (item.quality < MAX_QUALITY) {
-            increaseQuality(item);
-        }
-    }
-
-    private void increaseQuality(Item item) {
-        item.quality = item.quality + 1;
-    }
 }
